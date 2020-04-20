@@ -9,7 +9,8 @@ import {GAME_SIZE} from '../../settings/constants';
 export default function Board() {
   return (
     <>
-      <MiniDemon/>
+      <MiniDemon x={5} y={5}/>
+      <MiniDemon x={7} y={5}/>
       <Demon/>
       <Trap />
       <Hero />

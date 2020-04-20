@@ -12,7 +12,7 @@ export default function Demon() {
     <div
       style={{
         position: 'absolute',
-        bottom: TILE_SIZE * position.y,
+        top: TILE_SIZE * position.y,
         left: TILE_SIZE * position.x,
         width: DEMON_TILE_SIZE,
         height: DEMON_TILE_SIZE,
