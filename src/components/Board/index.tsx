@@ -11,9 +11,9 @@ export default function Board() {
     <>
       <MiniDemon/>
       <Demon/>
+      <Trap />
       <Hero />
       <Chest/>
-      <Trap />
       <img src="./assets/tileset.gif" alt="board" width={GAME_SIZE} height={GAME_SIZE}/> 
     </>
   )
