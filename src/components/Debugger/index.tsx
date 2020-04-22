@@ -9,7 +9,9 @@ function getCanvasMap() {
     const canvasX = canvas[y];
 
     for (let x = 0; x < canvasX.length; x++) {
-      tiles.push(<Tile x={x} y={y} text={canvas[y][x]}/>);
+      const key = `${x}-${y}`;
+      
+      tiles.push(<Tile x={x} y={y} text={canvas[y][x]} key={key}/>);
     }
   }
  

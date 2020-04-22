@@ -3,9 +3,9 @@ import { TILE_SIZE, DEMON_TILE_SIZE, EDirection } from '../../settings/constants
 import useEnemyMoviment from '../../hooks/useEnemyMoviment';
 import './index.css'
 
-const inicialPosition = { x: 7, y: 5 };
 
-export default function Demon() {
+export default function Demon({x,y}) {
+  const inicialPosition = { x, y };
   const { position, direction } = useEnemyMoviment(inicialPosition);
   
   return (

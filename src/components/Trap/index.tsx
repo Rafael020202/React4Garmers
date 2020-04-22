@@ -2,13 +2,13 @@ import React from 'react';
 import {TILE_SIZE} from '../../settings/constants';
 import './index.css'
 
-export default function Hero() {
+export default function Trap({x,y}) {
   return (
     <div
       style={{
         position: 'absolute',
-        top: TILE_SIZE * 10,
-        left: TILE_SIZE * 10,
+        top: TILE_SIZE * y,
+        left: TILE_SIZE * x,
         width: TILE_SIZE,
         height: 100,
         backgroundImage: "url(./assets/TRAP.png)",

@@ -1,11 +1,29 @@
 import React from 'react';
+import { ECanvas } from '../../../contexts/canvas/helpers';
 
 export default function Tile({x, y, text}) {
   function getColor() {
     switch(text) {
-      case 0: 
+      case ECanvas.FLOOR: 
+        return 'darkgrey';
+      
+      case ECanvas.WALL:
         return 'yellow';
-      case 1:
+
+      case ECanvas.DOOR:
+        return 'white';
+
+      case ECanvas.HERO:
+        return 'magenta';
+
+      case ECanvas.TRAP:
+        return 'chartreuse';
+      
+      case ECanvas.CHEST:
+        return 'blue';
+
+      case ECanvas.MINI_DEMON:
+      case ECanvas.DEMON:
         return 'red';
     }
   }
@@ -21,6 +39,8 @@ export default function Tile({x, y, text}) {
       position: 'absolute',
       top: 48 * y,
       left: 48 * x,
+      fontSize: 32,
+      zIndex: 2
     }}>{text}</div>
   );
 }

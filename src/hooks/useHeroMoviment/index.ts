@@ -1,11 +1,11 @@
 import useEventListener from '@use-it/event-listener';
 import React, { useState } from 'react';
-import { EDirection } from '../../settings/constants';
-import { handleMoviment } from '../../contexts/canvas/helpers';
+import { EDirection, EWalker } from '../../settings/constants';
+import { handleMoviment, checkValidMoviment } from '../../contexts/canvas/helpers';
 
 
-function useHeroMoviment() {
-  const [position, setPosition] = useState({x: 8, y: 3});
+function useHeroMoviment({x,y}) {
+  const [position, setPosition] = useState({x, y});
   const [direction, setDirection] = useState(EDirection.RIGHT);
 
   useEventListener('keydown',(e: React.KeyboardEvent) => {
@@ -13,8 +13,12 @@ function useHeroMoviment() {
     const values = Object.values(EDirection); 
     
     if(values.find(i => i === e.key)) {
-      setPosition(handleMoviment(e.key, position));
-      setDirection(e.key as EDirection);
+      const moviment = handleMoviment(e.key, position); 
+      
+      if(checkValidMoviment(moviment, EWalker.HERO).valid) {
+        setPosition(moviment);
+        setDirection(e.key as EDirection);
+      }
     }
   
   });
