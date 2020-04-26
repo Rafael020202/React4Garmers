@@ -38,30 +38,29 @@ const { FLOOR: FL,
 
 export const canvas = [
   [WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA],
-  [WA,FL,FL,WA,FL,CH,FL,FL,WA,FL,CH,FL,FL,DO,DO,FL,WA,FL,FL,WA],
+  [WA,FL,FL,WA,FL,FL,FL,FL,WA,FL,FL,FL,FL,DO,DO,FL,WA,FL,FL,WA],
   [WA,FL,FL,WA,FL,FL,FL,FL,WA,FL,FL,FL,FL,FL,FL,FL,WA,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
-  [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
+  [WA,FL,FL,FL,FL,FL,TR,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,TR,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,DM,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
-  [WA,FL,FL,TR,FL,MD,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
+  [WA,FL,FL,TR,FL,CH,FL,FL,FL,FL,TR,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,MD,FL,TR,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
-  [WA,FL,FL,FL,FL,FL,FL,MD,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
+  [WA,FL,FL,FL,FL,FL,FL,MD,CH,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
-  [WA,HE,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
+  [WA,HE,WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,FL,WA],
   [WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA,WA],
 ];
 
 export function checkValidMoviment(nextPosition, walker) {
   const canvasValue = canvas[nextPosition.y][nextPosition.x];
-  console.log(canvasValue);
   const result = walker === EWalker.HERO 
   ?getHeroValidMoves(canvasValue)  
   :getEnemyValidMoves(canvasValue);
@@ -91,7 +90,7 @@ function getHeroValidMoves(canvasValue) {
 function getEnemyValidMoves(canvasValue) {
   return {
     valid: canvasValue === ECanvas.HERO || canvasValue === ECanvas.FLOOR,
-    dead: false,
+    dead: canvasValue === ECanvas.HERO,
     chest: false,
     door: false
   };

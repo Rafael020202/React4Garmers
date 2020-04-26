@@ -1,21 +1,33 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { EDirection, EWalker } from '../../settings/constants';
-import { handleMoviment, checkValidMoviment } from '../../contexts/canvas/helpers';
 import useInterval from '@use-it/interval';
+import { CanvasContext } from '../../contexts/canvas';
 
 function useEnemyMoviment(initialPosition) {
   const [position, setPosition] = useState(initialPosition);
   const [direction, setDirection] = useState('RIGHT');
+  const canvas = useContext(CanvasContext);
 
   useInterval(function move() {
-    const moviment = Object.values(EDirection);
+    const array = Object.values(EDirection);
     const index = Math.floor(Math.random() * 4);
-    const nextMoviment = handleMoviment(moviment[index],position); 
 
-    if(checkValidMoviment(nextMoviment, EWalker.ENEMY).valid) {
-      setPosition(nextMoviment);
+    const {moviment, nextMove} = 
+    canvas.updateCanvas(array[index], position, EWalker.ENEMY);
+
+    if(nextMove.valid) {
+      setPosition(moviment);
       setDirection(moviment[index]);
     }
+
+    if(nextMove.dead) {
+      setTimeout(() => {
+        alert('você morreu');
+      })
+
+      window.location.reload();
+    }
+
   }, 1000);
 
   return { position, direction }
