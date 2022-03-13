@@ -1,4 +1,6 @@
-![image](https://i.ibb.co/pwxfPxZ/react-game.png)
+<h1 align="center">
+    <img alt="" title="" src="https://i.ibb.co/pwxfPxZ/react-game.png">
+</h1>
 
 # 🎮 React4Gamers
 
